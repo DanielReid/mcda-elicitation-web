@@ -114,5 +114,5 @@ define(['underscore', 'angular'], function(_, angular) {
     };
   };
 
-  return angular.module('elicit.taskDependencies', dependencies).factory('TaskDependencies', TaskDependencies);
+  return dependencies.concat(TaskDependencies);
 });

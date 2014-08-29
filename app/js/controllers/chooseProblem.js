@@ -1,12 +1,12 @@
 'use strict';
-define(['angular', 'underscore'], function(angular, _) {
+define(['angular', 'angular-resource', 'underscore'], function(angular, angularResource, _) {
   var dependencies = ['$scope', '$resource', config.workspacesRepository.service];
   var ChooseProblemController = function($scope, $resource, Workspaces) {
     var examplesRepositoryUrl = config ? config.examplesRepository : '';
     var examplesResource = $resource(examplesRepositoryUrl + ':url', {url:'@url'});
 
     $scope.examplesList = examplesResource.query();
-    
+
     $scope.list = [];
     $scope.model = {};
     $scope.local = {};
@@ -17,7 +17,7 @@ define(['angular', 'underscore'], function(angular, _) {
           .create(problem)
           .then(function(workspace) { workspace.redirectToDefaultView(); });
       }
-      
+
       if (choice === 'local') {
         if (!_.isEmpty($scope.local.contents)) {
           createWorkspace(angular.fromJson($scope.local.contents));
@@ -36,7 +36,7 @@ define(['angular', 'underscore'], function(angular, _) {
     });
 
     $scope.workspacesList = Workspaces.query();
-    
+
     $scope.chooseProblemModal = {};
   };
 

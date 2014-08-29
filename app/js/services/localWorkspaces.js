@@ -1,6 +1,6 @@
 'use strict';
-define(['mcda/config', 'angular', 'underscore', 'mcda/services/partialValueFunction'], function(Config, angular, _) {
-  var dependencies = ['elicit.pvfService'];
+define(['mcda/config', 'angular', 'underscore'], function(Config, angular, _) {
+  var dependencies = ['PartialValueFunctionService'];
 
   var Workspaces = function(PartialValueFunction, LocalRemarks, $rootScope, $q, $location)  {
     function randomId(size, prefix) {
@@ -75,9 +75,9 @@ define(['mcda/config', 'angular', 'underscore', 'mcda/services/partialValueFunct
         deferred.resolve(id);
         return deferred.promise;
       };
-      
+
       workspace.$save = function() {
-        save(workspace.id, workspace);  
+        save(workspace.id, workspace);
       };
 
       workspace.query = function() {
@@ -111,7 +111,7 @@ define(['mcda/config', 'angular', 'underscore', 'mcda/services/partialValueFunct
       if (problem.remarks) {
         LocalRemarks.save(workspaceId, problem.remarks);
       }
-      
+
       var deferred = $q.defer();
       deferred.resolve(decorate(workspace));
       return deferred.promise;
@@ -136,5 +136,5 @@ define(['mcda/config', 'angular', 'underscore', 'mcda/services/partialValueFunct
              "query": query };
   };
 
-  return angular.module('elicit.localWorkspaces', dependencies).factory('LocalWorkspaces', Workspaces);
+  return dependencies.concat(Workspaces);
 });

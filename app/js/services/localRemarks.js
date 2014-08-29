@@ -22,5 +22,5 @@ define(['angular'], function (angular) {
             save: save
         };
     };
-    return angular.module('elicit.localRemarks', dependencies).factory('LocalRemarks', Remarks);
+    return dependencies.concat(Remarks);
 });

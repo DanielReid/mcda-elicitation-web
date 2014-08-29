@@ -1,6 +1,6 @@
 define(['mcda/config', 'angular', 'angular-resource', 'underscore'],
   function(Config, angular, angularResource, _) {
-    var dependencies = ['elicit.pvfService', 'ngResource'];
+    var dependencies = ['PartialValueFunctionService', 'ngResource'];
 
     function randomId(size, prefix) {
       var text = "";
@@ -183,5 +183,5 @@ define(['mcda/config', 'angular', 'angular-resource', 'underscore'],
       };
     };
 
-    return angular.module('elicit.remoteWorkspaces', dependencies).factory('RemoteWorkspaces', Workspaces);
+    return dependencies.concat(Workspaces);
   });
